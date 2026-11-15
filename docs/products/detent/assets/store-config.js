@@ -6,5 +6,7 @@ window.DETENT_STORE = Object.freeze({
   provider: 'payhip',
   currency: 'USD',
   personalPrice: 19,
-  personalCheckoutUrl: 'https://payhip.com/buy?link=pT3IL'
+  personalCheckoutUrl: 'https://payhip.com/buy?link=pT3IL',
+  commercialPrice: 79,
+  commercialCheckoutUrl: 'https://payhip.com/buy?link=WfAYs'
 });

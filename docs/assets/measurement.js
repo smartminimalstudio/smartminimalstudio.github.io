@@ -2,7 +2,8 @@
 (()=>{'use strict';
 const source=document.currentScript,container=source?.dataset.container||'',measurement=source?.dataset.measurement||'';
 if(!/^GTM-[A-Z0-9]+$/.test(container)||!/^G-[A-Z0-9]+$/.test(measurement))return;
-const key='smartminimal-analytics-v1',period=180*86400000,product=!!document.querySelector('#personal-buy')||(/\/products\/detent\/|^\/detent\//.test(location.pathname)&&!/\/(terms|privacy)\.html$/.test(location.pathname));
+const key='smartminimal-analytics-v1',period=180*86400000,product=!!document.querySelector('#personal-buy')||(/\/products\/detent\/|^\/detent\//.test(location.pathname)&&!/\/(terms|privacy)(?:\.html)?\/?$/.test(location.pathname));
+const productId=document.body.dataset.product|| (product?'detent_d33':'studio');
 const denied={analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'};
 window.dataLayer=window.dataLayer||[];function consent(){window.dataLayer.push(arguments)}
 consent('consent','default',denied);consent('set','ads_data_redaction',true);
@@ -10,7 +11,7 @@ let allowed=false,loaded=false,panel,opener,viewSent=false;
 const lang=()=>document.documentElement.lang.startsWith('pt')?'pt':'en';
 function read(){try{const v=JSON.parse(localStorage.getItem(key));return v&&['allowed','denied'].includes(v.choice)&&v.expires>Date.now()?v.choice:null}catch{return null}}
 function cleanUrl(value){try{const u=new URL(value);const params=new URLSearchParams();for(const name of ['utm_source','utm_medium','utm_campaign','utm_content','utm_term']){const v=u.searchParams.get(name);if(v&&v.length<=120&&!v.includes('@'))params.set(name,v)}return u.origin+u.pathname+(params.size?'?'+params:'')}catch{return ''}}
-function push(name,details={}){if(!allowed)return;window.dataLayer.push({event:'sms_event',sms_event_name:name,sms_product:product?'detent_d33':'studio',sms_feature:null,sms_palette:null,sms_language:lang(),sms_destination:null,sms_value:null,sms_currency:null,...details})}
+function push(name,details={}){if(!allowed)return;window.dataLayer.push({event:'sms_event',sms_event_name:name,sms_product:productId,sms_feature:null,sms_palette:null,sms_language:lang(),sms_destination:null,sms_value:null,sms_currency:null,...details})}
 function start(){window['ga-disable-'+measurement]=false;consent('set',{linker:{domains:['smartminimalstudio.pages.dev','payhip.com'],accept_incoming:true},allow_google_signals:false,allow_ad_personalization_signals:false,page_location:cleanUrl(location.href),page_referrer:cleanUrl(document.referrer)});consent('consent','update',{...denied,analytics_storage:'granted'});
 if(!loaded){loaded=true;window.dataLayer.push({sms_page_location:cleanUrl(location.href),sms_page_referrer:cleanUrl(document.referrer),sms_page_title:document.title});window.dataLayer.push({'gtm.start':Date.now(),event:'gtm.js'});const tag=document.createElement('script');tag.async=true;tag.src='https://www.googletagmanager.com/gtm.js?id='+encodeURIComponent(container);tag.id='sms-google-tag-manager';document.head.append(tag)}
 if(product&&!viewSent){viewSent=true;push('view_product')}
@@ -31,7 +32,7 @@ document.addEventListener('click',e=>{const target=e.target instanceof Element?e
 if(target.matches('[data-play-feature]')&&target.getAttribute('aria-pressed')==='true')push('feature_play',{sms_feature:target.dataset.playFeature});
 if(target.id==='hero-play'&&target.getAttribute('aria-pressed')==='true')push('feature_play',{sms_feature:'hero'});
 if(target.matches('[data-preset]'))push('finish_change',{sms_palette:target.dataset.preset});
-if(target.matches('a[href]')){const url=new URL(target.href,location.href);if(url.hostname==='payhip.com'&&target.id==='personal-buy')push('checkout_click',{sms_destination:'payhip',sms_product:'detent_d33',sms_value:19,sms_currency:'USD'});else if(/(^|\.)(youtube\.com|youtu\.be|instagram\.com)$/.test(url.hostname))push('social_click',{sms_destination:url.hostname.includes('instagram')?'instagram':'youtube'});else if(!product&&url.pathname.includes('/products/detent/'))push('product_explore',{sms_product:'detent_d33'})}
+if(target.matches('a[href]')){const url=new URL(target.href,location.href);if(url.hostname==='payhip.com'&&['personal-buy','commercial-buy','commercial-buy-bottom'].includes(target.id)){const commercial=target.id.startsWith('commercial-');push('checkout_click',{sms_destination:'payhip',sms_product:commercial?'detent_commercial_d33':'detent_d33',sms_value:commercial?79:19,sms_currency:'USD'})}else if(/(^|\.)(youtube\.com|youtu\.be|instagram\.com)$/.test(url.hostname))push('social_click',{sms_destination:url.hostname.includes('instagram')?'instagram':'youtube'});else if(!product&&url.pathname.includes('/products/detent/'))push('product_explore',{sms_product:'detent_d33'})}
 });
 document.addEventListener('change',e=>{if(e.target.id==='language')push('language_change',{sms_language:e.target.value==='pt'?'pt':'en'});if(/^color-(gray|black|orange)$/.test(e.target.id))push('finish_change',{sms_palette:'custom'})});
 window.SMS_MEASUREMENT={get allowed(){return allowed},get loaded(){return loaded},open(){opener.click()}};
