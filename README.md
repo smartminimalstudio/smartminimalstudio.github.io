@@ -2,9 +2,9 @@
 
 Public studio and product marketing website. GitHub Pages serves `main:/docs`.
 
-- Studio: `/smart-minimal-studio/`
-- DETENT: `/smart-minimal-studio/products/detent/`
-- The original `/detent/` presentation remains available for existing links.
+- Studio: `/`
+- DETENT: `/products/detent/`
+- Legacy personal Pages URLs receive compatibility redirects.
 
 Smart & Minimal Studio is the umbrella brand. DETENT• retains its product identity, joined E/T wordmark, orange dot, current D33 presentation, animations and finish configurator.
 
