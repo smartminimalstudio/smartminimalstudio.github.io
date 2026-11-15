@@ -15,3 +15,10 @@ Optional GA4 measurement is loaded through GTM only after visitor opt-in. Advert
 Preview: `python3 -m http.server 8894 --directory docs`.
 
 © 2026 Wes Guirra / Smart & Minimal Studio. All rights reserved, except as separately granted.
+
+
+## Hosting
+
+The commercial website is served by Cloudflare Pages Free at https://smartminimalstudio.pages.dev/. The GitHub Pages compatibility branch redirects older links; main/docs remains the marketing source. No printable geometry or paid manuals belong in the public site.
+
+Build the static upload ZIP with `python3 scripts/package-site.py`. Upload that ZIP as a production deployment to the existing `smartminimalstudio` Pages project; do not create a new project for updates.

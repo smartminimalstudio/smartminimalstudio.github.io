@@ -1,0 +1,3 @@
+/detent /products/detent/ 301
+/detent/ /products/detent/ 301
+/detent/* /products/detent/:splat 301

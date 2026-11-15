@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://smartminimalstudio.github.io/sitemap.xml
+Sitemap: https://smartminimalstudio.pages.dev/sitemap.xml
