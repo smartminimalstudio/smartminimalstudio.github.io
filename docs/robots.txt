@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://wesguirra.github.io/smart-minimal-studio/sitemap.xml
