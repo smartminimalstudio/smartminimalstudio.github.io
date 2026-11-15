@@ -23,4 +23,4 @@ The commercial website is served by Cloudflare Pages Free at https://smartminima
 
 Build the static upload ZIP with `python3 scripts/package-site.py`. Upload that ZIP as a production deployment to the existing `smartminimalstudio` Pages project; do not create a new project for updates.
 
-Commercial licence: [US$79 / 12 months](https://smartminimalstudio.pages.dev/products/detent/commercial), one-time payment with manual renewal. D33 project files remain a separate US$19 purchase. Checkout collects the named licensee and required licence acceptance; no paid geometry is hosted here.
+Commercial licence: [US$79 / 12 months](https://smartminimalstudio.pages.dev/products/detent/commercial), one-time payment with manual renewal. The complete D33 files are included in the US$79 commercial edition. Checkout collects the named licensee and required licence acceptance; no paid geometry is hosted here.
