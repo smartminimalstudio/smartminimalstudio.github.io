@@ -10,7 +10,7 @@ Smart & Minimal Studio is the umbrella brand. DETENT• retains its product iden
 
 This repository contains public marketing assets only. Do not add CAD, STL, STEP, 3MF, meshes, customer archives, offline assembly viewers or assembly PDFs. Paid DETENT files are delivered through Payhip at US$19 once for personal use. Commercial printing requires the existing separate written grant. The current edition remains in development; physical qualification is pending and no load rating is claimed.
 
-No analytics or payment processing are embedded. Language and palette preferences remain in the visitor's browser. Hosting and payment processors have their own privacy practices.
+Optional GA4 measurement is loaded through GTM only after visitor opt-in. Advertising is disabled. This site does not process payments. Language, palette and analytics choices remain in the visitor's browser. Hosting and payment processors have their own privacy practices.
 
 Preview: `python3 -m http.server 8894 --directory docs`.
 
